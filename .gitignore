@@ -1,0 +1,10 @@
+node_modules
+.metadata
+.idea
+.c9
+bower_components
+platforms
+Thumbs.db
+*.zip
+npm-debug.log
+

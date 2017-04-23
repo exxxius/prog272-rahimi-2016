@@ -5,23 +5,36 @@ import React, { Component } from 'react';
 import '../App.css';
 
 class Address extends Component {
-    constructor() {
-        super();
-        this.state = {
-            nine: '0',
-            firstName: 'unknown'
+    constructor(props) {
+        super(props);
+
+     //   console.log('ADDRESS PROPS', typeof this.props);
+        if (!this.props.addressList){
+            throw new Error("NO PROPS IN ADDRESS!!!");
         }
+        const address = this.props.addressList[0];
+        this.state = {
+            firstName: address.firstName,
+            lastName: address.lastName,
+            Street: address.Street,
+            City: address.City,
+            State: address.State,
+            Zip: address.Zip
+        }
+      //  console.log('this is test::: ' + this.props.addressList[0]);
     }
 
 
     setAddress = () => {
+        const address = this.props.addressList[1];
+
         this.setState({
-            firstName: 'Edwin',
-            lastName: 'Davis',
-            Street: '152nd Ave NE',
-            City: 'Redmond',
-            State: 'WA',
-            Zip: '98052'
+            firstName: address.firstName,
+            lastName: address.lastName,
+            Street: address.Street,
+            City: address.City,
+            State: address.State,
+            Zip: address.Zip
         })
     };
 
