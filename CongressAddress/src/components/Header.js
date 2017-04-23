@@ -2,8 +2,8 @@
  * Created by bcuser on 4/17/17.
  */
 import React, {Component} from 'react';
-import logo from '../logo.svg';
-import '../App.css';
+import logo from '../images/logo.svg';
+import '../css/App.css';
 
 class Header extends Component {
 
