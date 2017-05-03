@@ -3,12 +3,11 @@
  */
 import React, {Component} from 'react';
 import '../css/App.css';
-//import addresses from '../address-list';
 
 class AddressShow extends Component {
     constructor(props) {
         super(props);
-        this.quiet = true;
+        this.quiet = false;
         this.log('SHOW ADDRESS TEST PROPS', props);
         if (!this.props.address) {
             throw new Error("NO PROPS IN AddressShow!!!");
@@ -47,7 +46,7 @@ class AddressShow extends Component {
                 <p className="App-intro">
                     Zip: {this.props.address.Zip}
                 </p>
-                <button id="getAddress" onClick={this.props.OnGetAddress}>Get Address</button>
+                <button id="getAddress" onClick={this.props.OnGetAddress}>Get The Address</button>
 
             </div>
         );
