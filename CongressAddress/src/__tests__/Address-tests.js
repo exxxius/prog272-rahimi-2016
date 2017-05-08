@@ -3,10 +3,10 @@
  */
 import React from 'react';
 import {mount} from 'enzyme';
-import Address from "../components/Address";
+import Address from '../components/Address';
 import addresses from '../address-list';
 
-describe('React Address Test Suite', function () {
+describe('React Address Test Suite', function() {
 
     var quiet = true;
 

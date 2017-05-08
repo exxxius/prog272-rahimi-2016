@@ -10,7 +10,7 @@ class AddressShow extends Component {
         this.quiet = false;
         this.log('SHOW ADDRESS TEST PROPS', props);
         if (!this.props.address) {
-            throw new Error("NO PROPS IN AddressShow!!!");
+            throw new Error('NO PROPS IN AddressShow!!!');
         }
         this.log(props);
     }
@@ -24,29 +24,29 @@ class AddressShow extends Component {
     }
 
     render() {
-        this.log("SHOW ADDRESS RENDER CALLED");
+        this.log('SHOW ADDRESS RENDER CALLED');
 
         return (
-            <div id="addressShowRender" className="Address">
-                <p className="App-intro">
+            <div id='addressShowRender' className='Address'>
+                <p className='App-intro'>
                     firstName: {this.props.address.firstName}
                 </p>
-                <p className="App-intro">
+                <p className='App-intro'>
                     lastName: {this.props.address.lastName}
                 </p>
-                <p className="App-intro">
+                <p className='App-intro'>
                     Street: {this.props.address.Street}
                 </p>
-                <p className="App-intro">
+                <p className='App-intro'>
                     City: {this.props.address.City}
                 </p>
-                <p className="App-intro">
+                <p className='App-intro'>
                     State: {this.props.address.State}
                 </p>
-                <p className="App-intro">
+                <p className='App-intro'>
                     Zip: {this.props.address.Zip}
                 </p>
-                <button id="getAddress" onClick={this.props.OnGetAddress}>Get The Address</button>
+                <button id='getAddress' onClick={this.props.OnGetAddress}>Next Address</button>
 
             </div>
         );

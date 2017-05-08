@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import Address from './components/Address';
-import Header from './components/Header';
-import './css/index.css';
+import ElfHeader from './components/ElfHeader';
+import ElfMenu from './components/ElfMenu';
 
 ReactDOM.render(
     <div>
-        <Header/>
-        <App />
-        <Address />
+        <ElfHeader />
+        <ElfMenu/>
     </div>,
     document.getElementById('root')
 );
-

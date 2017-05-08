@@ -1,25 +1,19 @@
-/**
- * Created by bcuser on 4/17/17.
- */
 import React, {Component} from 'react';
 import '../css/App.css';
 import addresses from '../address-list';
-import AddressShow from './AddressShow';
+import AddressEdit from './AddressEdit';
+import Address from "./Address";
 
 
-class Address extends Component {
-    constructor() {
-        super();
-        this.addressIndex = 0;
-        this.state = {
-            address: addresses[this.addressIndex]
-        };
-    }
-
-
-    getAddress = () => {
-        this.addressIndex = 1;
+class AddressChanger extends Address {
+        constructor() {
+            super();
+            this.onAddressChange = this.onAddressChange.bind(this);
+        }
+        onAddressChange(event) {
+        this.addressIndex += 1;
         const address = addresses[this.addressIndex];
+
         this.setState({
             address: address
         })
@@ -60,13 +54,15 @@ class Address extends Component {
     render() {
         if (!this.quiet) { console.log("ADDRESS RENDER"); }
         return (
+
             <div className="App">
-                <AddressShow
+                <AddressEdit
                     address={this.state.address}
                     OnGetAddress={this.getAddress}
+                    onNameChange={this.onNameChange}
                 />
             </div>
         );
     }
 }
-export default Address;
+export default AddressChanger;
