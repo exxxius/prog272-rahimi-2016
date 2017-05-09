@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {shallow} from 'enzyme';
-import AddressShow from "../components/AddressShow";
+import AddressShow from '../components/AddressShow';
 import addresses from '../address-list';
 
 describe('AddressShow Shallow Suite', function () {
@@ -20,54 +20,54 @@ describe('AddressShow Shallow Suite', function () {
             console.log(ninep);
         }
         ;
-    }
-// additional tests for all the address fields
-//==================================
+    };
+    // additional tests for all the address fields
+    //==================================
 
     it('renders and displays the default first name', () => {
         const wrapper = shallow(<AddressShow address={address}/>);
-        const firstName = <p className="App-intro">firstName: unknown</p>;
+        const firstName = <p className='App-intro'>firstName: unknown</p>;
         //console.log(wrapper);
         expect(wrapper.contains(firstName)).toEqual(true);
     });
 
-//lastName===
+    //lastName===
 
     it('renders and displays the default last name', () => {
         const wrapper = shallow(<AddressShow address={address}/>);
-        const lastName = <p className="App-intro">lastName: unknown</p>;
+        const lastName = <p className='App-intro'>lastName: unknown</p>;
         expect(wrapper.contains(lastName)).toEqual(true);
     });
 
-//Street===
+    //Street===
 
     it('renders and displays the default Street', () => {
         const wrapper = shallow(<AddressShow address={address}/>);
-        const Street = <p className="App-intro">Street: unknown</p>;
+        const Street = <p className='App-intro'>Street: unknown</p>;
         expect(wrapper.contains(Street)).toEqual(true);
     });
 
-//City===
+    //City===
 
     it('renders and displays the default City', () => {
         const wrapper = shallow(<AddressShow address={address}/>);
-        const City = <p className="App-intro">City: unknown</p>;
+        const City = <p className='App-intro'>City: unknown</p>;
         expect(wrapper.contains(City)).toEqual(true);
     });
 
-//State===
+    //State===
 
     it('renders and displays the default State', () => {
         const wrapper = shallow(<AddressShow address={address}/>);
-        const State = <p className="App-intro">State: unknown</p>;
+        const State = <p className='App-intro'>State: unknown</p>;
         expect(wrapper.contains(State)).toEqual(true);
     });
 
-//Zip Code===
+    //Zip Code===
 
     it('renders and displays the default Zip code', () => {
         const wrapper = shallow(<AddressShow address={address}/>);
-        const Zip = <p className="App-intro">Zip: unknown</p>;
+        const Zip = <p className='App-intro'>Zip: unknown</p>;
         expect(wrapper.contains(Zip)).toEqual(true);
     });
 

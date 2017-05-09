@@ -5,7 +5,10 @@ import React, {Component} from 'react';
 import '../css/App.css';
 import addresses from '../address-list';
 import AddressShow from './AddressShow';
-
+import {
+    saveToLocalStorage,
+    clearLocalStorage,
+    getLocalStorage } from '../assets/elf-local-storage';
 
 class Address extends Component {
     constructor() {
@@ -14,18 +17,20 @@ class Address extends Component {
         this.state = {
             address: addresses[this.addressIndex]
         };
+        this.onAddressChange = this.onAddressChange.bind(this);
+        this.onNameChange = this.onNameChange.bind(this);
     }
 
 
-    getAddress = () => {
-        this.addressIndex = 1;
+    onAddressChange = () => {
+        this.addressIndex += 1;
         const address = addresses[this.addressIndex];
         this.setState({
             address: address
         })
     };
 
-    onNameChange = (event) => {
+    onNameChange(event) {
       //  this.log("ON NAME CHANGE");
         const address = addresses[this.addressIndex];
         switch (event.target.id) {
@@ -58,12 +63,13 @@ class Address extends Component {
 
 
     render() {
+        this.quiet = true;
         if (!this.quiet) { console.log("ADDRESS RENDER"); }
         return (
             <div className="App">
                 <AddressShow
                     address={this.state.address}
-                    OnGetAddress={this.getAddress}
+                    OnGetAddress={this.onAddressChange}
                 />
             </div>
         );

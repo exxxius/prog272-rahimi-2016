@@ -7,7 +7,7 @@ import '../css/App.css';
 class AddressShow extends Component {
     constructor(props) {
         super(props);
-        this.quiet = false;
+        this.quiet = true;
         this.log('SHOW ADDRESS TEST PROPS', props);
         if (!this.props.address) {
             throw new Error('NO PROPS IN AddressShow!!!');

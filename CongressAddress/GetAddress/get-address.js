@@ -64,7 +64,7 @@ readFile('address.json').then(function(text) {
         writeIt('lastName:', json.objects[i].person.lastname);
         writeIt('Street:', getAddress(json.objects[i].extra.address, 'W'));
         writeIt('City:', getCity(json.objects[i].extra.address, 'W' , 10));
-        writeIt('State', json.objects[i].state);
+        writeIt('State:', json.objects[i].state);
         writeIt('Zip:', getZip(json.objects[i].extra.address, ' '));
         writeIt('Phone:', json.objects[i].phone);
         writeIt('email:', '');

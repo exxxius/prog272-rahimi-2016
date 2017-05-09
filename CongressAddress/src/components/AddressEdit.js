@@ -14,7 +14,6 @@ class AddressEdit extends Component {
                        className='App-intro'
                        value={this.props.address.firstName}
                        onChange={this.props.onNameChange}/>
-
                 <input id='LastName'
                        className='App-intro'
                        value={this.props.address.lastName}
