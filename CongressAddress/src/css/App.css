@@ -16,6 +16,8 @@
 
 .App-intro {
   font-size: large;
+  margin: 10px;
+
 }
 
 @keyframes App-logo-spin {
@@ -55,4 +57,10 @@ li a:hover:not(.active) {
 
 .active {
   background-color: #111 ;
+}
+.Address{
+  padding: 10px;
+}
+.editButtons button, .showButtons button {
+  margin: 5px;
 }

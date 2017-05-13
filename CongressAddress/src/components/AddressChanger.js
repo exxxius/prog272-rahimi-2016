@@ -16,6 +16,9 @@ class AddressChanger extends Address {
                     address={this.state.address}
                     OnGetAddress={this.onAddressChange}
                     onNameChange={this.onNameChange}
+                    OnFirstAddress={this.onFirstIndex}
+                    OnLastAddress={this.onLastIndex}
+                    OnPrevAddress={this.prevIndex}
                 />
             </div>
         );

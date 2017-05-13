@@ -30,14 +30,14 @@ describe('React Address Test Suite', function() {
 
     it('renders and displays the default first name', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const firstName = <p className="App-intro">firstName: unknown</p>;
+        const firstName = <p className='App-intro'>firstName: unknown</p>;
         //console.log(wrapper);
         expect(wrapper.contains(firstName)).toEqual(true);
     });
 
     it('renders button click message first Name', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const firstName = <p className="App-intro">firstName: Edwin</p>;
+        const firstName = <p className='App-intro'>firstName: Edwin</p>;
         wrapper.find('button#getAddress').simulate('click');
         //getIndex(wrapper, 1, true);
         expect(wrapper.contains(firstName)).toEqual(true);
@@ -47,13 +47,13 @@ describe('React Address Test Suite', function() {
 
     it('renders and displays the default last name', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const lastName = <p className="App-intro">lastName: unknown</p>;
+        const lastName = <p className='App-intro'>lastName: unknown</p>;
         expect(wrapper.contains(lastName)).toEqual(true);
     });
 
     it('renders button click message lastName', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const lastName = <p className="App-intro">lastName: Davis</p>;
+        const lastName = <p className='App-intro'>lastName: Davis</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(lastName)).toEqual(true);
     });
@@ -62,13 +62,13 @@ describe('React Address Test Suite', function() {
 
     it('renders and displays the default Street', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const Street = <p className="App-intro">Street: unknown</p>;
+        const Street = <p className='App-intro'>Street: unknown</p>;
         expect(wrapper.contains(Street)).toEqual(true);
     });
 
     it('renders button click message Street', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const Street = <p className="App-intro">Street: 2576 152nd AVE NE</p>;
+        const Street = <p className='App-intro'>Street: 2576 152nd AVE NE</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(Street)).toEqual(true);
     });
@@ -77,13 +77,13 @@ describe('React Address Test Suite', function() {
 
     it('renders and displays the default City', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const City = <p className="App-intro">City: unknown</p>;
+        const City = <p className='App-intro'>City: unknown</p>;
         expect(wrapper.contains(City)).toEqual(true);
     });
 
     it('renders button click message City', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const City = <p className="App-intro">City: Redmond</p>;
+        const City = <p className='App-intro'>City: Redmond</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(City)).toEqual(true);
     });
@@ -92,13 +92,13 @@ describe('React Address Test Suite', function() {
 
     it('renders and displays the default State', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const State = <p className="App-intro">State: unknown</p>;
+        const State = <p className='App-intro'>State: unknown</p>;
         expect(wrapper.contains(State)).toEqual(true);
     });
 
     it('renders button click message State', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const State = <p className="App-intro">State: WA</p>;
+        const State = <p className='App-intro'>State: WA</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(State)).toEqual(true);
     });
@@ -107,13 +107,13 @@ describe('React Address Test Suite', function() {
 
     it('renders and displays the default Zip code', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const Zip = <p className="App-intro">Zip: unknown</p>;
+        const Zip = <p className='App-intro'>Zip: unknown</p>;
         expect(wrapper.contains(Zip)).toEqual(true);
     });
 
     it('renders button click message Zip', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const Zip = <p className="App-intro">Zip: 98052</p>;
+        const Zip = <p className='App-intro'>Zip: 98052</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(Zip)).toEqual(true);
     });

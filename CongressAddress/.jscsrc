@@ -1,7 +1,17 @@
 {
     "preset": "google",
     "validateIndentation": 4,
-    "excludeFiles": ["**/node_modules/**", "**/bower_components/**"],
     "requireCamelCaseOrUpperCaseIdentifiers": false,
-    "maximumLineLength": 120
+    "maximumLineLength": null,
+    "excludeFiles": [
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/config/**",
+        "**/address-list.js",
+        "**/address.json",
+        "**/mock-user-info.js"
+
+
+    ]
+
 }

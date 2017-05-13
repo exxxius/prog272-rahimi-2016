@@ -71,6 +71,6 @@ readFile('address.json').then(function(text) {
         writeIt('contact:', json.objects[i].extra.contact_form || '', true);
         console.log('},');
     }
-    console.log('\n\nSTRINGIFY\n\n', JSON.stringify(gitUser, null, 4));
+    //   console.log('\n\nSTRINGIFY\n\n', JSON.stringify(gitUser, null, 4));
     debug('all done');
 });
