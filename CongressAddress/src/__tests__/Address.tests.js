@@ -25,8 +25,8 @@ describe('React Address Test Suite', function() {
     it('See if true is true?!', () => {
         expect(true).toBe(true);
     });
-// additional tests for all the address fields
-//==================================
+    // additional tests for all the address fields
+    //==================================
 
     it('renders and displays the default first name', () => {
         const wrapper = mount(<Address address={addresses}/>);
@@ -43,7 +43,7 @@ describe('React Address Test Suite', function() {
         expect(wrapper.contains(firstName)).toEqual(true);
     });
 
-//lastName===
+    //lastName===
 
     it('renders and displays the default last name', () => {
         const wrapper = mount(<Address address={addresses}/>);
@@ -58,7 +58,7 @@ describe('React Address Test Suite', function() {
         expect(wrapper.contains(lastName)).toEqual(true);
     });
 
-//Street===
+    //Street===
 
     it('renders and displays the default Street', () => {
         const wrapper = mount(<Address address={addresses}/>);
@@ -73,7 +73,7 @@ describe('React Address Test Suite', function() {
         expect(wrapper.contains(Street)).toEqual(true);
     });
 
-//City===
+    //City===
 
     it('renders and displays the default City', () => {
         const wrapper = mount(<Address address={addresses}/>);
@@ -88,7 +88,7 @@ describe('React Address Test Suite', function() {
         expect(wrapper.contains(City)).toEqual(true);
     });
 
-//State===
+    //State===
 
     it('renders and displays the default State', () => {
         const wrapper = mount(<Address address={addresses}/>);
@@ -103,7 +103,7 @@ describe('React Address Test Suite', function() {
         expect(wrapper.contains(State)).toEqual(true);
     });
 
-//Zip Code===
+    //Zip Code===
 
     it('renders and displays the default Zip code', () => {
         const wrapper = mount(<Address address={addresses}/>);
@@ -118,5 +118,6 @@ describe('React Address Test Suite', function() {
         expect(wrapper.contains(Zip)).toEqual(true);
     });
 });
+
 
 

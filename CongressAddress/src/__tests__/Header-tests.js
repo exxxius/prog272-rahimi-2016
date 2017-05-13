@@ -2,12 +2,10 @@
  * Created by bcuser on 4/23/17.
  */
 import React from 'react';
-import Header from '../components/ElfHeader'
-import { shallow } from 'enzyme';
+import Header from '../components/ElfHeader';
+import {shallow} from 'enzyme';
 
-
-describe('Header test', function() {
-
+describe('Header test', function () {
 
     it('renders and reads H2 text', () => {
         const wrapper = shallow(<Header />);
