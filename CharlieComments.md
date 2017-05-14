@@ -129,6 +129,6 @@ I provide a link to the comments, but if you can't find them, just go to your on
 
 My comments are here:
 
-
+https://github.com/exxxius/prog272-rahimi-2017/blob/charlie-midterm/CharlieComments.md
 
 And also attached, but easier to read through the above link to your repository.
