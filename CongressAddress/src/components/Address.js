@@ -5,11 +5,13 @@ import React, {Component} from 'react';
 import '../css/App.css';
 import addresses from '../address-list';
 import AddressShow from './AddressShow';
-/*import {
-    saveToLocalStorage,
+import Logger from '../assets/elf-logger';
+const logger = new Logger('address', 'yellow', 'green', '18px');
+import 'whatwg-fetch';
+import { saveToLocalStorage,
     clearLocalStorage,
     getLocalStorage } from '../assets/elf-local-storage';
-*/
+
 class Address extends Component {
     constructor() {
         super();
@@ -22,6 +24,40 @@ class Address extends Component {
         this.onLastIndex = this.onLastIndex.bind(this); // I added
         this.onFirstIndex = this.onFirstIndex.bind(this); // I added
         this.prevIndex = this.prevIndex.bind(this);
+        //
+        //const address = addresses[this.addressIndex];
+        addresses.forEach(function(address) {
+            saveToLocalStorage(address);
+        });
+        this.loadAddresses();
+    }
+
+    saveAddress(address) {
+        clearLocalStorage();
+        saveToLocalStorage(address);
+        const foo = getLocalStorage();
+        console.log('STORAGE', foo);
+    }
+
+    loadAddresses() {
+
+        const that = this;
+        fetch('../GetAddress/addresses.json').then(function(data) {
+            const addresses = data.json();
+            console.log(addresses);
+            return addresses;
+        }).then(function(data) {
+            data.forEach(function(address, index) {
+                const addressString = JSON.stringify(address);
+                //console.log(addressString);
+                localStorage.setItem('elf' + index, addressString);
+            });
+            // console.log(JSON.stringify(data, null, 4));
+            that.addresses = data;
+            that.setLocalStorage();
+        }).catch(function(err) {
+            logger.log(err);
+        });
     }
 
     onAddressChange (event) {

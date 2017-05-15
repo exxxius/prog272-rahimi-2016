@@ -9,13 +9,17 @@ import addresses from '../address-list';
 describe('React Address Test Suite', function() {
 
     var quiet = true;
-
+    // I added beforeAll function to pass the "localStorage is not defined" ReferenceError in tests.
+    beforeAll(() => {
+        const ls = require('../assets/elf-local-storage.js');
+        ls.setLocalStorage();
+    });
     /*
      * @param {object} wrapper - Container for a bunch of HTML nodes
      * @param {number} index - Index of HTML element.
      * @param {boolean} talkToMe - Speak even if quiet is true
      */
-    const getIndex = function (wrapper, index, talkToMe) {
+    const getIndex = function(wrapper, index, talkToMe) {
         if (!quiet || talkToMe) {
             const ninep = wrapper.find('div#addressShowRender').childAt(index).debug();
             console.log('NINEP:', ninep);
@@ -118,6 +122,3 @@ describe('React Address Test Suite', function() {
         expect(wrapper.contains(Zip)).toEqual(true);
     });
 });
-
-
-

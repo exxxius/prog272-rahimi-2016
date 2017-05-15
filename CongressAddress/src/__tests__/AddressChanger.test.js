@@ -14,7 +14,10 @@ const ElfDebug = new ElfEnzymeDebug(true, 'AddressChanger.test.js');
 describe('React AddressChanger Test Suite', function() {
 
     var quiet = true;
-
+    beforeAll(() => {
+        const ls = require('../assets/elf-local-storage.js');
+        ls.setLocalStorage();
+    });
     /*
      * @param {object} wrapper - Container for a bunch of HTML nodes
      * @param {number} index - Index of HTML element.

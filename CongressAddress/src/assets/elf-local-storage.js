@@ -1,6 +1,20 @@
 /**
  * Created by Charlie on 5/8/17.
  */
+// I added setLocalStorage function to pass the "localStorage is not defined" error in tests.
+function setLocalStorage() {
+    global.localStorage = {
+        getItem: function(key) {
+            return this[key];
+        },
+        setItem: function(key, value) {
+            this[key] = value;
+        },
+        removeItem: function(key) {
+            delete this[key];
+        }
+    };
+}
 
 function saveToLocalStorageByName(key, item) {
     if (!key) {
@@ -42,6 +56,7 @@ function getLocalStorage() {
 function clearLocalStorage() {
     localStorage.clear();
 }
+export {
+    saveToLocalStorage, saveToLocalStorageByName,
+    getLocalStorage, clearLocalStorage, setLocalStorage};
 
-export {saveToLocalStorage, saveToLocalStorageByName,
-    getLocalStorage, clearLocalStorage};
