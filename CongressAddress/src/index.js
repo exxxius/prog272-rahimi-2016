@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ElfHeader from './components/ElfHeader';
-import ElfMenu from './components/ElfMenu';
+import DataMaven from './components/DataMaven';
 
 ReactDOM.render(
     <div>
-        <ElfHeader />
-        <ElfMenu/>
+        <DataMaven/>
     </div>,
     document.getElementById('root')
 );

@@ -5,14 +5,36 @@ import React from 'react';
 import {mount} from 'enzyme';
 import Address from '../components/Address';
 import addresses from '../address-list';
+import ElfEnzymeDebug from '../ElfDebugEnzyme.js';
+const ElfDebug = new ElfEnzymeDebug(true, 'Address.test.js');
+jest.mock('whatwg-fetch');
 
 describe('React Address Test Suite', function() {
 
     var quiet = true;
     // I added beforeAll function to pass the "localStorage is not defined" ReferenceError in tests.
-    beforeAll(() => {
+/*    beforeAll(() => {
         const ls = require('../assets/elf-local-storage.js');
         ls.setLocalStorage();
+    });*/
+
+    beforeEach(function() {
+        const localStorageMock = (function() {
+            let storage = {};
+            return {
+                getItem: function(key) {
+                    return storage[key];
+                },
+                setItem: function(key, value) {
+                    storage[key] = value.toString();
+                },
+                clear: function() {
+                    storage = {};
+                }
+            };
+        })();
+        Object.defineProperty(global, 'localStorage', {value: localStorageMock});
+
     });
     /*
      * @param {object} wrapper - Container for a bunch of HTML nodes
@@ -41,7 +63,7 @@ describe('React Address Test Suite', function() {
 
     it('renders button click message first Name', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const firstName = <p className='App-intro'>firstName: Edwin</p>;
+        const firstName = <p className='App-intro'>firstName: Roger</p>;
         wrapper.find('button#getAddress').simulate('click');
         //getIndex(wrapper, 1, true);
         expect(wrapper.contains(firstName)).toEqual(true);
@@ -57,7 +79,8 @@ describe('React Address Test Suite', function() {
 
     it('renders button click message lastName', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const lastName = <p className='App-intro'>lastName: Davis</p>;
+        const lastName = <p className='App-intro'>lastName: Wicker</p>;
+        ElfDebug.getIndex(wrapper, 'div#addressShowRender', 1, false);
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(lastName)).toEqual(true);
     });
@@ -72,7 +95,8 @@ describe('React Address Test Suite', function() {
 
     it('renders button click message Street', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const Street = <p className='App-intro'>Street: 2576 152nd AVE NE</p>;
+        ElfDebug.getIndex(wrapper, 'div#addressShowRender', 2, false);
+        const Street = <p className='App-intro'>Street: 555 Dirksen Senate Office Building</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(Street)).toEqual(true);
     });
@@ -87,7 +111,7 @@ describe('React Address Test Suite', function() {
 
     it('renders button click message City', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const City = <p className='App-intro'>City: Redmond</p>;
+        const City = <p className='App-intro'>City: Washington DC</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(City)).toEqual(true);
     });
@@ -102,7 +126,7 @@ describe('React Address Test Suite', function() {
 
     it('renders button click message State', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const State = <p className='App-intro'>State: WA</p>;
+        const State = <p className='App-intro'>State: MS</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(State)).toEqual(true);
     });
@@ -117,7 +141,7 @@ describe('React Address Test Suite', function() {
 
     it('renders button click message Zip', () => {
         const wrapper = mount(<Address address={addresses}/>);
-        const Zip = <p className='App-intro'>Zip: 98052</p>;
+        const Zip = <p className='App-intro'>Zip: 20510</p>;
         wrapper.find('button#getAddress').simulate('click');
         expect(wrapper.contains(Zip)).toEqual(true);
     });

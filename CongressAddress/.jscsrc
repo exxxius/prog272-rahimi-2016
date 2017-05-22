@@ -9,7 +9,7 @@
         "**/config/**",
         "**/address-list.js",
         "**/address.json",
-        "**/mock-user-info.js"
+        "**/mock-data.js"
 
 
     ]

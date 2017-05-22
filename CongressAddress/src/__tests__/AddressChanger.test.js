@@ -1,22 +1,33 @@
 /**
  * Created by bcuser on 5/8/17.
  */
-/**
- * Created by bcuser on 4/23/17.
- */
 import React from 'react';
 import {mount} from 'enzyme';
 import AddressChanger from '../components/AddressChanger';
 import AddressEdit from '../components/AddressEdit';
 import addresses from '../address-list';
-import ElfEnzymeDebug from '../ElfEnzymeDebug.js';
+import ElfEnzymeDebug from '../ElfDebugEnzyme.js';
 const ElfDebug = new ElfEnzymeDebug(true, 'AddressChanger.test.js');
 describe('React AddressChanger Test Suite', function() {
 
     var quiet = true;
-    beforeAll(() => {
-        const ls = require('../assets/elf-local-storage.js');
-        ls.setLocalStorage();
+    beforeEach(function() {
+        const localStorageMock = (function() {
+            let storage = {};
+            return {
+                getItem: function(key) {
+                    return storage[key];
+                },
+                setItem: function(key, value) {
+                    storage[key] = value.toString();
+                },
+                clear: function() {
+                    storage = {};
+                }
+            };
+        })();
+        Object.defineProperty(global, 'localStorage', {value: localStorageMock});
+
     });
     /*
      * @param {object} wrapper - Container for a bunch of HTML nodes
@@ -45,7 +56,7 @@ describe('React AddressChanger Test Suite', function() {
 
     it('renders button click message first Name', () => {
         const wrapper = mount(<AddressChanger />);
-        const firstName = <input id='FirstName' className='App-intro' value='Edwin'/>;
+        const firstName = <input id='FirstName' className='App-intro' value='Roger'/>;
         wrapper.find('button#changeAddress').simulate('click');
         ElfDebug.getIndex(wrapper, 'div#addressShowRender', 1, false);
         expect(wrapper.containsMatchingElement(firstName)).toEqual(true);
@@ -62,7 +73,7 @@ describe('React AddressChanger Test Suite', function() {
 
     it('renders button click message Last Name', () => {
         const wrapper = mount(<AddressChanger />);
-        const lastName = <input id='LastName' className='App-intro' value='Davis'/>;
+        const lastName = <input id='LastName' className='App-intro' value='Wicker'/>;
         wrapper.find('button#changeAddress').simulate('click');
         ElfDebug.getIndex(wrapper, 'div#addressShowRender', 1, false);
         expect(wrapper.containsMatchingElement(lastName)).toEqual(true);
@@ -79,7 +90,7 @@ describe('React AddressChanger Test Suite', function() {
 
     it('renders button click message Street', () => {
         const wrapper = mount(<AddressChanger />);
-        const Street = <input id='Street' className='App-intro' value= '2576 152nd AVE NE'/>;
+        const Street = <input id='Street' className='App-intro' value= '555 Dirksen Senate Office Building'/>;
         wrapper.find('button#changeAddress').simulate('click');
         ElfDebug.getIndex(wrapper, 'div#addressShowRender', 2, false);
         expect(wrapper.containsMatchingElement(Street)).toEqual(true);
@@ -96,7 +107,7 @@ describe('React AddressChanger Test Suite', function() {
 
     it('renders button click message City', () => {
         const wrapper = mount(<AddressChanger />);
-        const City = <input id='City' className='App-intro' value= 'Redmond'/>;
+        const City = <input id='City' className='App-intro' value= 'Washington DC'/>;
         wrapper.find('button#changeAddress').simulate('click');
         ElfDebug.getIndex(wrapper, 'div#addressShowRender', 3, false);
         expect(wrapper.containsMatchingElement(City)).toEqual(true);
@@ -113,7 +124,7 @@ describe('React AddressChanger Test Suite', function() {
 
     it('renders button click message State', () => {
         const wrapper = mount(<AddressChanger />);
-        const State = <input id='State' className='App-intro' value= 'WA'/>;
+        const State = <input id='State' className='App-intro' value= 'MS'/>;
         wrapper.find('button#changeAddress').simulate('click');
         ElfDebug.getIndex(wrapper, 'div#addressShowRender', 4, false);
         expect(wrapper.containsMatchingElement(State)).toEqual(true);
@@ -130,7 +141,7 @@ describe('React AddressChanger Test Suite', function() {
 
     it('renders button click message Zip', () => {
         const wrapper = mount(<AddressChanger />);
-        const Zip = <input id='Zip' className='App-intro' value= '98052'/>;
+        const Zip = <input id='Zip' className='App-intro' value= '20510'/>;
         wrapper.find('button#changeAddress').simulate('click');
         ElfDebug.getIndex(wrapper, 'div#addressShowRender', 5, false);
         expect(wrapper.containsMatchingElement(Zip)).toEqual(true);

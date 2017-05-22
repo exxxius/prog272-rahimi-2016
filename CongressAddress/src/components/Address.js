@@ -7,17 +7,36 @@ import addresses from '../address-list';
 import AddressShow from './AddressShow';
 import Logger from '../assets/elf-logger';
 const logger = new Logger('address', 'yellow', 'green', '18px');
+const detailLogger = new Logger('address:detail', 'white', 'green', '14px');
 import 'whatwg-fetch';
+import DataLoader from './DataLoader.js';
+const dataLoader = new DataLoader();
 import { saveToLocalStorage,
-    clearLocalStorage,
-    getLocalStorage } from '../assets/elf-local-storage';
+    /*clearLocalStorage,
+    getLocalStorage,*/ getByIndex } from '../assets/elf-local-storage';
 
 class Address extends Component {
     constructor() {
         super();
         this.addressIndex = 0;
+        const that = this;
+        dataLoader.loadAddresses(function(addressCount) {
+            if (!addressCount) {
+                throw new Error('Cannot get address count in address.js');
+            }
+            that.addressCount = addressCount;
+        });
+        var unknown = 'unknown';
         this.state = {
-            address: addresses[this.addressIndex]
+            address: {
+                'firstName': unknown,
+                'lastName': unknown,
+                'Street': unknown,
+                'City': unknown,
+                'State': unknown,
+                'Zip': unknown
+            }
+            //address: addresses[this.addressIndex]
         };
         this.onAddressChange = this.onAddressChange.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
@@ -29,46 +48,26 @@ class Address extends Component {
         addresses.forEach(function(address) {
             saveToLocalStorage(address);
         });
-        this.loadAddresses();
     }
 
-    saveAddress(address) {
-        clearLocalStorage();
-        saveToLocalStorage(address);
-        const foo = getLocalStorage();
-        console.log('STORAGE', foo);
-    }
+    onAddressChange(event) {
+        detailLogger.log('onAddressChange called with', event.target.id);
+        if (event.target.id.startsWith('dec')) {
+            if (this.addressIndex > 0) {
+                this.addressIndex -= 1;
+            }
+        } else {
+            if (this.addressIndex < this.addressCount) {
+                this.addressIndex += 1;
+            }
+        }
+        detailLogger.log('addressIndex', this.addressIndex);
+        const address = getByIndex(this.addressIndex);
 
-    loadAddresses() {
-
-        const that = this;
-        fetch('../GetAddress/addresses.json').then(function(data) {
-            const addresses = data.json();
-            console.log(addresses);
-            return addresses;
-        }).then(function(data) {
-            data.forEach(function(address, index) {
-                const addressString = JSON.stringify(address);
-                //console.log(addressString);
-                localStorage.setItem('elf' + index, addressString);
-            });
-            // console.log(JSON.stringify(data, null, 4));
-            that.addresses = data;
-            that.setLocalStorage();
-        }).catch(function(err) {
-            logger.log(err);
-        });
-    }
-
-    onAddressChange (event) {
-        if (this.addressIndex === addresses.length - 1) {
-            this.addressIndex = 0;} else {
-            this.addressIndex += 1;}
-        const address = addresses[this.addressIndex];
         this.setState({
             address: address
         });
-    }
+    };
 
     prevIndex (event) {
         if (this.addressIndex === 0) {
@@ -100,8 +99,9 @@ class Address extends Component {
     }
 
     onNameChange(event) {
-        //  this.log('ON NAME CHANGE');
-        const address = addresses[this.addressIndex];
+        logger.log('ON NAME CHANGE');
+        //const address = addresses[this.addressIndex];
+        const address = getByIndex(this.addressIndex);
         switch (event.target.id) {
             case 'FirstName':
                 address.firstName = event.target.value;
