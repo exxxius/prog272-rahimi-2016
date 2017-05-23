@@ -15,7 +15,7 @@ import { saveToLocalStorage,
     getLocalStorage,saveByIndex,*/ getByIndex } from '../assets/elf-local-storage';
 
 class AddressEdit extends Component {
-    constructor() {
+/*    constructor() {
         super();
         this.addressIndex = 0;
         const that = this;
@@ -123,7 +123,7 @@ class AddressEdit extends Component {
         this.setState({
             address: address
         });
-    };
+    };*/
 
     render() {
         // this.log('SHOW ADDRESS RENDER CALLED');

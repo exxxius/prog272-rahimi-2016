@@ -6,6 +6,7 @@ import {mount} from 'enzyme';
 import Address from '../components/Address';
 import addresses from '../address-list';
 import ElfEnzymeDebug from '../ElfDebugEnzyme.js';
+import DataMaven from "../components/DataMaven";
 const ElfDebug = new ElfEnzymeDebug(true, 'Address.test.js');
 jest.mock('whatwg-fetch');
 
