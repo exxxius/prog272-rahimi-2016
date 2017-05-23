@@ -140,14 +140,15 @@ class DataMaven extends Component {
                     <ElfHeader />
                     <ElfMenu/>
                     <div>
-                        <Route exact path='/' component={Address}/>
-                        <Route path='/edit' render={(props) => (
+
+                        <Route exact path='/' render={(props) => (
                             <Address {...props}
                                          address={this.state.address}
                                          OnGetAddress={this.onAddressChange}
 
                             />
-                        )}/>
+                        )}/>'
+                        <Route path='/edit' component={AddressEdit}/>
                         <Route path='/small' component={SmallNumbers}/>
                     </div>
                 </div>
