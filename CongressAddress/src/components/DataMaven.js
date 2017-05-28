@@ -2,24 +2,21 @@
  * Created by bcuser on 5/20/17.
  */
 import React, {Component} from 'react';
-import Address from './Address';
+import AddressShow from './AddressShow';
 import AddressEdit from './AddressEdit';
 import SmallNumbers from './SmallNumbers';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import ElfHeader from './ElfHeader';
 import ElfMenu from './ElfMenu';
-import AddressChanger from './AddressChanger';
 import '../css/App.css';
-import addresses from '../address-list';
 import Logger from '../assets/elf-logger';
 const logger = new Logger('address', 'yellow', 'green', '18px');
 const detailLogger = new Logger('address:detail', 'white', 'green', '14px');
 import 'whatwg-fetch';
 import DataLoader from './DataLoader.js';
 const dataLoader = new DataLoader();
-import { saveToLocalStorage,
-    /*clearLocalStorage,
-     getLocalStorage,saveByIndex,*/ getByIndex } from '../assets/elf-local-storage';
+import {getByIndex
+} from '../assets/elf-local-storage';
 
 class DataMaven extends Component {
 
@@ -33,27 +30,32 @@ class DataMaven extends Component {
             }
             that.addressCount = addressCount;
         });
-        const address = getByIndex(this.addressIndex);
+        //const address = getByIndex(this.addressIndex);
 
-        this.setState({
-            address: address
-        });
         this.state = {
-            address: addresses[this.addressIndex]
-        };
+            address: {
+                "firstName": "Lamars",
+                "lastName": "Alexander",
+                "Street": "455 Dirksen Senate Office Building",
+                "City": "Washington DC",
+                "State": "TN",
+                "Zip": "20510",
+                "phone": "202-224-4944",
+                "website": "https://www.alexander.senate.gov/public",
+                "email": "",
+                "contact": "http://www.alexander.senate.gov/public/index.cfm?p=Email"
+
+            }
+    };
         this.onAddressChange = this.onAddressChange.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
-        this.onLastIndex = this.onLastIndex.bind(this); // I added
-        this.onFirstIndex = this.onFirstIndex.bind(this); // I added
-        this.prevIndex = this.prevIndex.bind(this);
-        //
-        //const address = addresses[this.addressIndex];
-        addresses.forEach(function(address) {
-            saveToLocalStorage(address);
-        });
+        this.onLastIndex = this.onLastIndex.bind(this);
+        this.onFirstIndex = this.onFirstIndex.bind(this);
+        this.onPrevIndex = this.onPrevIndex.bind(this);
     }
 
     onAddressChange(event) {
+        console.log('NextBtn clicked');
         detailLogger.log('onAddressChange called with', event.target.id);
         if (event.target.id.startsWith('dec')) {
             if (this.addressIndex > 0) {
@@ -72,30 +74,32 @@ class DataMaven extends Component {
         });
     };
 
-    prevIndex (event) {
+    onPrevIndex(event) {
+        console.log('PreviousBtn clicked');
         if (this.addressIndex === 0) {
-            this.addressIndex = addresses.length - 1;} else {
-            this.addressIndex -= 1;}
-        const address = addresses[this.addressIndex];
+            this.addressIndex = this.addressCount;
+        } else {
+            this.addressIndex -= 1;
+        }
+        const address = getByIndex(this.addressIndex);
         this.setState({
             address: address
         });
     }
 
-    // I added
-    onFirstIndex (event) {
-        console.log('first clicked');
+    onFirstIndex(event) {
+        console.log('firstBtn clicked');
         this.addressIndex = 0;
-        const address = addresses[this.addressIndex];
+        const address = getByIndex(this.addressIndex);
         this.setState({
             address: address
         });
     }
-    // I added
-    onLastIndex (event) {
-        console.log('last clicked');
-        this.addressIndex = addresses.length - 1;
-        const address = addresses[this.addressIndex];
+
+    onLastIndex(event) {
+        console.log('lastBtn clicked');
+        this.addressIndex = this.addressCount - 1;
+        const address = getByIndex(this.addressIndex);
         this.setState({
             address: address
         });
@@ -103,7 +107,6 @@ class DataMaven extends Component {
 
     onNameChange(event) {
         logger.log('ON NAME CHANGE');
-        //const address = addresses[this.addressIndex];
         const address = getByIndex(this.addressIndex);
         switch (event.target.id) {
             case 'FirstName':
@@ -135,30 +138,33 @@ class DataMaven extends Component {
 
     render() {
         return (
-            <Router>
-                <div>
+            <div>
                     <ElfHeader />
                     <ElfMenu/>
                     <div>
-                        <Route exact path='/' component={Address}/>
-                        <Route path='/edit' render={(props) => (
-                            <Address {...props}
+                        <Route exact path='/' render={(props) => (
+                            <AddressShow {...props}
                                          address={this.state.address}
-                                         OnGetAddress={this.onAddressChange}
-
+                                         onGetAddress={this.onAddressChange}
+                                         onFirstAddress={this.onFirstIndex}
+                                         onLastAddress={this.onLastIndex}
+                                         onPrevAddress={this.onPrevIndex}
                             />
-                        )}/>
+                        )}/>'
+                        <Route path='/edit' render={(props) => (
+                            <AddressEdit {...props}
+                                         address={this.state.address}
+                                         onGetAddress={this.onAddressChange}
+                                         onNameChange={this.onNameChange}
+                                         onFirstAddress={this.onFirstIndex}
+                                         onLastAddress={this.onLastIndex}
+                                         onPrevAddress={this.onPrevIndex}
+                            />
+                        )}/>'
                         <Route path='/small' component={SmallNumbers}/>
                     </div>
-                </div>
-            </Router>
+            </div>
         );
     }
 }
 export default DataMaven;
-
-/*
-onNameChange={this.onNameChange}
-OnFirstAddress={this.onFirstIndex}
-OnLastAddress={this.onLastIndex}
-OnPrevAddress={this.prevIndex}*/

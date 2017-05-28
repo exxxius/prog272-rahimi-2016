@@ -1,8 +1,8 @@
 /**
  * Created by Charlie on 5/8/17.
  */
-// I added setLocalStorage function to pass the "localStorage is not defined" error in tests.
-/*function setLocalStorage() {
+/*// I added setLocalStorage function to pass the "localStorage is not defined" error in tests.
+function setLocalStorage() {
     global.localStorage = {
         getItem: function(key) {
             return this[key];

@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DataRouter from '../components/DataMaven';
+import {BrowserRouter as Router} from 'react-router-dom';
 import ElfMenu from '../components/ElfMenu';
 import {shallow} from 'enzyme';
 
@@ -29,7 +29,7 @@ describe('ElfMenu Suite', function() {
 
     it('renders the ElfMenu component without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<DataRouter><ElfMenu /></DataRouter>, div);
+        ReactDOM.render(<Router><ElfMenu /></Router>, div);
     });
 
     it('Shows there is no BrowserRouter in ElfMenu', () => {
@@ -37,5 +37,4 @@ describe('ElfMenu Suite', function() {
         const router = wrapper.find('BrowserRouter');
         expect(router.length).toEqual(0);
     });
-
 });
