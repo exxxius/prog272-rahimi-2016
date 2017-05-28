@@ -47,10 +47,10 @@ class AddressShow extends Component {
                     Zip: {this.props.address.Zip}
                 </p>
                 <div className='showButtons'>
-                    <button id='firstAddress' onClick={this.props.OnFirstAddress}>First Address</button>
-                    <button id='getAddress' onClick={this.props.OnGetAddress}>Next Address</button>
-                    <button id='previousAddress' onClick={this.props.OnPrevAddress}>Previous Address</button>
-                    <button id='lastAddress' onClick={this.props.OnLastAddress}>Last Address</button>
+                    <button id='firstAddress' onClick={this.props.onFirstAddress}>First Address</button>
+                    <button id='getAddress' onClick={this.props.onGetAddress}>Next Address</button>
+                    <button id='previousAddress' onClick={this.props.onPrevAddress}>Previous Address</button>
+                    <button id='lastAddress' onClick={this.props.onLastAddress}>Last Address</button>
                 </div>
             </div>
         );

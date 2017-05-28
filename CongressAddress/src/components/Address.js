@@ -28,7 +28,7 @@ class Address extends Component {
             <div className='App'>
                 <AddressShow
                     address={this.props.address}
-                    OnGetAddress={this.props.onAddressChange}
+                    onGetAddress={this.props.onAddressChange}
                 />
             </div>
         );

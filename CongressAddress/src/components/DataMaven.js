@@ -2,7 +2,7 @@
  * Created by bcuser on 5/20/17.
  */
 import React, {Component} from 'react';
-import Address from './Address';
+import AddressShow from './AddressShow';
 import AddressEdit from './AddressEdit';
 import SmallNumbers from './SmallNumbers';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -23,8 +23,8 @@ import { saveToLocalStorage,
 
 class DataMaven extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.addressIndex = 0;
         const that = this;
         dataLoader.loadAddresses(function(addressCount) {
@@ -33,14 +33,12 @@ class DataMaven extends Component {
             }
             that.addressCount = addressCount;
         });
-        const address = getByIndex(this.addressIndex);
+        //const address = getByIndex(this.addressIndex);
 
-        this.setState({
-            address: address
-        });
         this.state = {
-            address: addresses[this.addressIndex]
+            address: {}
         };
+
         this.onAddressChange = this.onAddressChange.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
         this.onLastIndex = this.onLastIndex.bind(this); // I added
@@ -48,9 +46,9 @@ class DataMaven extends Component {
         this.prevIndex = this.prevIndex.bind(this);
         //
         //const address = addresses[this.addressIndex];
-        addresses.forEach(function(address) {
+        /*addresses.forEach(function(address) {
             saveToLocalStorage(address);
-        });
+        });*/
     }
 
     onAddressChange(event) {
@@ -142,9 +140,12 @@ class DataMaven extends Component {
                     <div>
 
                         <Route exact path='/' render={(props) => (
-                            <Address {...props}
+                            <AddressShow {...props}
                                          address={this.state.address}
-                                         OnGetAddress={this.onAddressChange}
+                                         onGetAddress={this.onAddressChange}
+                                         onFirstAddress={this.onFirstIndex}
+                                         onLastAddress={this.onLastIndex}
+                                         onPrevAddress={this.prevIndex}
 
                             />
                         )}/>'
