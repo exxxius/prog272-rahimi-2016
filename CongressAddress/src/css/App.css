@@ -1,66 +1,74 @@
 .App, .Address {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
 }
 
 .App-header {
-  background-color: bisque;
-  height: 150px;
-  padding: 20px;
-  color: brown;
+    background-color: bisque;
+    height: 150px;
+    padding: 20px;
+    color: brown;
 }
 
 .App-intro {
-  font-size: large;
-  margin: 10px;
-
+    font-size: 18px;
+    margin: 10px;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
 
 li {
-  float: left;
-  border-right:1px solid #bbb;
-
+    float: left;
+    border-right: 1px solid #bbb;
 }
 
 li:last-child {
-  border-right: none;
+    border-right: none;
 }
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: block;
+    color: red;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
 }
 
 li a:hover:not(.active) {
-  background-color: firebrick;
+    background-color: firebrick;
 }
 
 .active {
-  background-color: #111 ;
+    background-color: #111;
 }
-.Address{
-  padding: 10px;
+
+.Address {
+    padding: 10px;
 }
+
 .editButtons button, .showButtons button {
-  margin: 5px;
+    margin: 5px;
 }

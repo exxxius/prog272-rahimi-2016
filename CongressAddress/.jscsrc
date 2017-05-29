@@ -9,9 +9,8 @@
         "**/config/**",
         "**/address-list.js",
         "**/address.json",
-        "**/mock-data.js"
-
-
+        "**/mock-data.js",
+      "./src/components/ElfMenu.js"
     ]
 
 }

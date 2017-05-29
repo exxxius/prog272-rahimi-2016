@@ -15,7 +15,8 @@ const detailLogger = new Logger('address:detail', 'white', 'green', '14px');
 import 'whatwg-fetch';
 import DataLoader from './DataLoader.js';
 const dataLoader = new DataLoader();
-import {getByIndex
+import {
+    getByIndex
 } from '../assets/elf-local-storage';
 
 class DataMaven extends Component {
@@ -44,9 +45,8 @@ class DataMaven extends Component {
                 "website": "https://www.alexander.senate.gov/public",
                 "email": "",
                 "contact": "http://www.alexander.senate.gov/public/index.cfm?p=Email"
-
             }
-    };
+        };
         this.onAddressChange = this.onAddressChange.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
         this.onLastIndex = this.onLastIndex.bind(this);
@@ -55,8 +55,9 @@ class DataMaven extends Component {
     }
 
     onAddressChange(event) {
-        console.log('NextBtn clicked');
+        //console.log('NextBtn clicked');
         detailLogger.log('onAddressChange called with', event.target.id);
+        event.preventDefault();
         if (event.target.id.startsWith('dec')) {
             if (this.addressIndex > 0) {
                 this.addressIndex -= 1;
@@ -75,7 +76,8 @@ class DataMaven extends Component {
     };
 
     onPrevIndex(event) {
-        console.log('PreviousBtn clicked');
+        //console.log('PreviousBtn clicked');
+        event.preventDefault();
         if (this.addressIndex === 0) {
             this.addressIndex = this.addressCount;
         } else {
@@ -88,7 +90,8 @@ class DataMaven extends Component {
     }
 
     onFirstIndex(event) {
-        console.log('firstBtn clicked');
+        //console.log('firstBtn clicked');
+        event.preventDefault();
         this.addressIndex = 0;
         const address = getByIndex(this.addressIndex);
         this.setState({
@@ -97,7 +100,8 @@ class DataMaven extends Component {
     }
 
     onLastIndex(event) {
-        console.log('lastBtn clicked');
+        //console.log('lastBtn clicked');
+        event.preventDefault();
         this.addressIndex = this.addressCount - 1;
         const address = getByIndex(this.addressIndex);
         this.setState({
@@ -138,7 +142,7 @@ class DataMaven extends Component {
 
     render() {
         return (
-            <div>
+                <div className='container'>
                     <ElfHeader />
                     <ElfMenu/>
                     <div>
@@ -163,7 +167,7 @@ class DataMaven extends Component {
                         )}/>'
                         <Route path='/small' component={SmallNumbers}/>
                     </div>
-            </div>
+                </div>
         );
     }
 }

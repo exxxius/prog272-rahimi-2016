@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../css/App.css';
+import { Button } from 'react-bootstrap';
 
 class SmallNumbers extends Component {
     constructor() {
@@ -19,10 +20,9 @@ class SmallNumbers extends Component {
         return (
             <div className='App'>
                 <p className='App-intro'>Nine: {this.state.nine}</p>
-                <button className='elf' onClick={this.getNine}>Get Nine</button>
+                <Button bsStyle='primary' className='elf' onClick={this.getNine}>Get Nine</Button>
             </div>
         );
     };
 }
-
 export default SmallNumbers;
