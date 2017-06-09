@@ -43,6 +43,7 @@ const connect = {
         });
     },
 
+    //Connection settings for my own mlab account
     // mongodb://<dbuser>:<dbpassword>@ds049848.mlab.com:49848/elvenlab01
     mlabConnect: function() {
         'use strict';
