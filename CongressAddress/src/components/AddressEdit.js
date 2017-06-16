@@ -59,6 +59,14 @@ class AddressEdit extends Component {
                                     id='previousAddress' onClick={this.props.onPrevAddress}>Previous Address</Button>
                             <Button bsStyle='primary'
                                     id='lastAddress' onClick={this.props.onLastAddress}>Last Address</Button>
+                            <Button bsStyle='warning'
+                                    id='refreshData' onClick={this.props.refreshData}>Refresh Record</Button>
+                            <Button bsStyle='danger'
+                                    id='deleteRecord' onClick={this.props.onDeleteRecord}>Delete Record</Button>
+                            <Button bsStyle='danger'
+                                    id='clear' onClick={this.props.onClear}>Clear LocalStorage</Button>
+                            <Button bsStyle='success'
+                                    id='dbSave' onClick={this.props.onDbSave}>Save to Database</Button>
                         </div>
                     </div>
                 </div>

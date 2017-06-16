@@ -49,7 +49,10 @@ li a {
     display: block;
     color: red;
     text-align: center;
-    padding: 14px 16px;
+    padding: 4px 6px;
+    /*
+    margin: 20px;
+    */
     text-decoration: none;
 }
 

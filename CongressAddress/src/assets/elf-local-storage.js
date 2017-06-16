@@ -86,10 +86,15 @@ function removeElfKeys() {
     }
 }
 
+function delElfKey(index) {
+    const key = ELF_TAG + padNumber(index, 4, 0);
+    localStorage.removeItem(key);
+}
+
 function clearLocalStorage() {
     localStorage.clear();
 }
 
-export {saveByIndex, getByIndex, removeElfKeys,
+export {saveByIndex, getByIndex, removeElfKeys, delElfKey,
     saveToLocalStorage, saveToLocalStorageByName,
     getLocalStorage, clearLocalStorage};

@@ -27,9 +27,9 @@ const connect = {
         'use strict';
         console.log('Connecting with simple.');
         //const url = 'mongodb://127.0.0.1:27017/test';
-        const userName = 'charlie';
-        const password = 'foobar';
-        const siteAndPort = '192.168.2.18:27017';
+        const userName = 'mehdi';
+        const password = 'mahdi';
+        const siteAndPort = '192.168.1.18:27017';
         const databaseName = 'test';
         const url = 'mongodb://' + userName + ':' + password + '@' + siteAndPort + '/' + databaseName;
         console.log(url);

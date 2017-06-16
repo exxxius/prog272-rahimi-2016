@@ -16,7 +16,7 @@ import 'whatwg-fetch';
 import DataLoader from './DataLoader.js';
 const dataLoader = new DataLoader();
 import {
-    getByIndex
+    getByIndex, saveByIndex, delElfKey, clearLocalStorage
 } from '../assets/elf-local-storage';
 
 class DataMaven extends Component {
@@ -52,10 +52,48 @@ class DataMaven extends Component {
         this.onLastIndex = this.onLastIndex.bind(this);
         this.onFirstIndex = this.onFirstIndex.bind(this);
         this.onPrevIndex = this.onPrevIndex.bind(this);
+        this.onRefreshData = this.onRefreshData.bind(this);
+        this.deleteRecord = this.deleteRecord.bind(this);
+        this.dbAddressSave = this.dbAddressSave.bind(this);
+        this.loadDataCallback = this.loadDataCallback.bind(this);
     }
 
+    loadDataCallback(addressCount, address) {
+        this.setState({
+            addressCount: addressCount,
+            address: address
+        });
+    };
+
+    componentDidMount() {
+        logger.log('COMPONENT DID MOUNT!');
+        this.loadFromDatabase();
+    }
+
+    loadFromDatabase() {
+        const that = this;
+        dataLoader.loadAddresses(function(addressCount) {
+            if (!addressCount) {
+                throw new Error('Cant get address Count when trying to load from Database');
+            }
+            that.addressCount = addressCount;
+            logger.log('LOADED ADDRESS');
+            const address = getByIndex(that.addressIndex);
+            that.setState({
+                address: address
+            });
+        });
+    }
+
+    onRefreshData(event) {
+        dataLoader.clear();
+        this.loadFromDatabase();
+        event.preventDefault();
+    }
+
+    // jscs:ignore disallowTrailingWhitespace
     onAddressChange(event) {
-        //console.log('NextBtn clicked');
+        console.log('NextBtn clicked');
         detailLogger.log('onAddressChange called with', event.target.id);
         event.preventDefault();
         if (event.target.id.startsWith('dec')) {
@@ -73,6 +111,20 @@ class DataMaven extends Component {
         this.setState({
             address: address
         });
+    };
+
+    deleteRecord(event) {
+        console.log('DELbtn clicked');
+        event.preventDefault();
+        var address = getByIndex(this.addressIndex);
+        delElfKey(address);
+        window.location.reload();
+        /*this.addressIndex += 1;
+        detailLogger.log('addressIndex', this.addressIndex);
+        address = getByIndex(this.addressIndex);
+        this.setState({
+            address: address
+        });*/
     };
 
     onPrevIndex(event) {
@@ -109,6 +161,22 @@ class DataMaven extends Component {
         });
     }
 
+    dbAddressSave() {
+        console.log('SAVEbtn clicked');
+        const address = getByIndex(this.addressIndex);
+        const url = '/update' +
+            '?id=' + address._id +
+            '&address=' + JSON.stringify(address);
+        fetch(url)
+            .then((data) => data.json())
+            .then(function(data) {
+                logger.log(JSON.stringify(data, null, 4));
+            }).catch(function(err) {
+            const message = 'Could not insert or display data';
+            alert(message + err);
+            logger.log(err);
+        });
+    }
     onNameChange(event) {
         logger.log('ON NAME CHANGE');
         const address = getByIndex(this.addressIndex);
@@ -135,10 +203,15 @@ class DataMaven extends Component {
             default:
                 throw new Error('OH NO BAD CASE IN Address onNameChange');
         }
+        saveByIndex(address, this.addressIndex);
         this.setState({
             address: address
         });
     };
+
+    clearLocalStorage() {
+        clearLocalStorage();
+    }
 
     render() {
         return (
@@ -153,8 +226,11 @@ class DataMaven extends Component {
                                          onFirstAddress={this.onFirstIndex}
                                          onLastAddress={this.onLastIndex}
                                          onPrevAddress={this.onPrevIndex}
+                                         refreshData={this.onRefreshData}
+                                         onDeleteRecord={this.deleteRecord}
+                                         onClear={this.clearLocalStorage}
                             />
-                        )}/>'
+                        )}/>
                         <Route path='/edit' render={(props) => (
                             <AddressEdit {...props}
                                          address={this.state.address}
@@ -163,8 +239,11 @@ class DataMaven extends Component {
                                          onFirstAddress={this.onFirstIndex}
                                          onLastAddress={this.onLastIndex}
                                          onPrevAddress={this.onPrevIndex}
+                                         refreshData={this.onRefreshData}
+                                         onClear={this.clearLocalStorage}
+                                         onDbSave={this.dbAddressSave}
                             />
-                        )}/>'
+                        )}/>
                         <Route path='/small' component={SmallNumbers}/>
                     </div>
                 </div>

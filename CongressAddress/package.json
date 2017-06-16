@@ -1,9 +1,11 @@
 {
-  "name": "week02-react-jest",
+  "name": "congress-addres",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:30025",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "concurrently": "^3.4.0",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
@@ -21,6 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "go": "concurrently 'npm run server' 'npm start'",
+    "server": "nodemon ../CongressServer/bin/www"
   }
 }

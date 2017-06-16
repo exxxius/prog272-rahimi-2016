@@ -1,9 +1,13 @@
 /**
- * Created by bcuser on 5/13/17.
+ * Created by bcuser on 6/14/17.
  */
+/**
+ * Created by bcuser on 5/10/17.
+ */
+
 import Logger from '../assets/elf-logger';
 const logger = new Logger('data-loader', 'yellow', 'green', '18px');
-import {saveByIndex} from '../assets/elf-local-storage';
+import { getByIndex, saveByIndex, clearLocalStorage } from '../assets/elf-local-storage';
 import 'whatwg-fetch';
 
 export default class DataLoader {
@@ -15,14 +19,20 @@ export default class DataLoader {
 
     dataLoaded() {
         const elfStore = localStorage.getItem(this.STORE_SET[0]);
-        return (elfStore === this.STORE_SET[1]);
+        const elfCount = localStorage.getItem(this.STORE_SET[2]);
+        return (elfStore === this.STORE_SET[1] && elfCount > 0);
     }
 
     setLocalStorage(addresses) {
+        if (!addresses || addresses.length === 0) {
+            const err = 'Addresses missing or zero length ' +
+                'in DataLoader setLocalStorage. Is there ' +
+                'data in the database? Can you connect to the ' +
+                'server?';
+            throw new Error(err);
+        }
         logger.log('SET LOCAL', addresses);
-        //localStorage.setItem('elven-store', 'set');
         localStorage.setItem(this.STORE_SET[0], this.STORE_SET[1]);
-        //localStorage.setItem('elven-count', addresses.length);
         localStorage.setItem(this.STORE_SET[2], addresses.length);
         addresses.forEach(function(address, index) {
             saveByIndex(address, index);
@@ -37,18 +47,34 @@ export default class DataLoader {
             callback(localStorage.getItem(this.STORE_SET[2]));
         } else {
             logger.log('Loading data');
-            fetch('./address-list.json').then(function(data) {
-                const addresses = data.json();
-                console.log(addresses);
-                return addresses;
-            }).then(function(data) {
-                logger.log(JSON.stringify(data, null, 4));
-                //console.log(that);
-                that.setLocalStorage(data);
-                callback(data.length);
-            }).catch(function(err) {
+            fetch('./all-data')
+            //fetch('./address-list.json')
+                .then((data) => data.json())
+                .then((data) => {
+                    if (data.error) {
+                        alert(JSON.stringify(data.error, null, 4));
+                        callback(0);
+                        return;
+                    }
+                    logger.log(JSON.stringify(data.allData, null, 4));
+                    that.setLocalStorage(data.allData);
+                    callback(data.allData.length);
+                }).catch(function(err) {
+                if (err.message) {
+                    alert(JSON.stringify(err.message, null, 4));
+                } else {
+                    alert('error' + err);
+                }
                 logger.log(err);
             });
         }
+    };
+    clear() {
+        clearLocalStorage();
     }
+
+    findByIndex(index) {
+        return getByIndex(index);
+    }
+
 }

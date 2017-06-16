@@ -50,10 +50,26 @@ $(document).ready(function() { 'use strict';
     }
 
     function update() {
-        collection[0].firstName = 'foo';
+        collection[0].firstName = 'defaulT';
+        collection[0].lastName = 'defaulT';
+        collection[0].Street = 'defaulT';
+        collection[0].City = 'defaulT';
+        collection[0].State = 'defaulT';
+        collection[0].Zip = 'defaulT';
+        collection[0].Phone = 'defaulT';
+        collection[0].email = 'defaulT';
+        collection[0].contact = 'defaulT';
         const newData = {
             id: collection[0]._id,
-            firstName: collection[0].firstName
+            firstName: collection[0].firstName,
+            lastName: collection[0].lastName,
+            Street: collection[0].Street,
+            City: collection[0].City,
+            State: collection[0].State,
+            Zip: collection[0].Zip,
+            Phone: collection[0].Phone,
+            email: collection[0].email,
+            contact: collection[0].contact
         };
         $.getJSON('/update', newData, function(result) {
             $('#display').html(JSON.stringify(result, null, 4));
@@ -72,5 +88,8 @@ $(document).ready(function() { 'use strict';
     $('#insertValidData').click(insertCollection);
     $('#getAll').click(getAll);
     $('#emptyCollection').click(emptyCollection);
+
     $('#update').click(update);
+
+
 });
