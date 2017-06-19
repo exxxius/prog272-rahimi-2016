@@ -28,9 +28,11 @@ And this would be right:
 delElfKey(this.addressIndex);
 ```
 
-But other than that, it is hard to find flaw with your work.
+But other than that, it is hard to find flaw with your work on CongressAddress for the final. It included extra credit and was a generally very nice effort.
 
+You should be proud of what you accomplished this quarter. It was a pleasure having you in the course, and you showed that you have a talent well above average in our class. You were not the best, but you were one of the best students in the class. I say this just to make sure you understand that I appreciate what you have accomplished, and to make sure you know just how good you should feel. In case there is any ambiguity here: you should feel very good!
 
+Have a great summer!
 
 ## Core Programs
 
@@ -123,13 +125,11 @@ dbAddressSave() {
 ## Summary
 
 ```
-Assignments: 70.59
-Midterm: 70
-Final: 96
+Assignments: 99.02
+Midterm: 100
+Final: 100
 Participation: 100
-79.7088
+99.69
 ```
 
-That's an B-. Just barely. You don't really deserve a 100 for participation.
-
-I'm not quite sure what to say. I was initially thinking you would do quite well in this course but something got in your way. I wish I could have helped in some way. At any rate, your final was quite nice, you really rallied at the end and saved yourself from what could have been some serious trouble in terms of your grade. Again, good work on the final. It was a great comeback.
+That's an A. Easily. Amazing work on the final. One of the better finals in the class.
